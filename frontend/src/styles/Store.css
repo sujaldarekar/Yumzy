@@ -1,0 +1,471 @@
+/* Base Layout (Mobile First Default) */
+.store-container {
+    min-height: 100dvh; /* Mobile dynamic viewport */
+    background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+    color: white;
+    font-family: 'Outfit', sans-serif;
+    padding-bottom: 80px; /* Extra padding for mobile nav bars */
+}
+
+/* Nav Bar - Sticky & High Z-Index */
+.insta-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px; /* Reduced for mobile */
+    background: rgba(15, 12, 41, 0.95); /* More opaque for mobile */
+    backdrop-filter: blur(12px);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.back-btn, .nav-actions {
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px; /* Touch target size */
+}
+
+.nav-username {
+    font-weight: 600;
+    font-size: 16px; /* Readable on mobile */
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    background: linear-gradient(to right, #ff9966, #ff5e62);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-logo {
+    height: 32px;
+    width: auto;
+    margin-right: 10px;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    object-fit: contain;
+}
+
+.nav-center {
+    display: flex;
+    align-items: center;
+}
+
+/* Custom Header Layout - Mobile Stacked Default */
+.custom-profile-header {
+    display: flex;
+    flex-direction: column; /* Stacked by default */
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+    margin: 20px 16px; /* Tight margins for mobile */
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    position: relative;
+    z-index: 10;
+}
+
+/* Left Column: PFP + Bio */
+.header-left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%; /* Full width mobile */
+}
+
+.profile-image-container {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.profile-image-container::before {
+    content: '';
+    position: absolute;
+    inset: -3px; /* Slightly thinner for mobile */
+    background: linear-gradient(45deg, #ff00cc, #333399);
+    border-radius: 50%;
+    z-index: 0;
+    animation: rotate 4s linear infinite;
+}
+
+.profile-avatar {
+    width: 100px; /* Smaller for mobile */
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #1a1a2e;
+    position: relative;
+    z-index: 1;
+}
+
+/* Bio Logic */
+.profile-bio-section {
+    width: 100%;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center on mobile */
+}
+
+.bio-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50px; /* Pill shape for mobile */
+    backdrop-filter: blur(4px);
+}
+
+.bio-icon { font-size: 14px; }
+.bio-text { font-size: 13px; color: #e0e0e0; font-weight: 500; }
+
+/* Right Column: Name + Stats + Actions */
+.header-right {
+    width: 100%; /* Full width mobile */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.business-name {
+    font-size: 26px; /* Smaller for mobile */
+    font-weight: 800;
+    margin: 0 0 16px;
+    background: linear-gradient(to right, #fff, #b98acc);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stats-container {
+    display: flex;
+    gap: 12px; /* Tight gap */
+    margin-bottom: 24px;
+    justify-content: center;
+    width: 100%;
+}
+
+.stat-box {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 16px; /* Compact */
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    align-items: center;
+    flex: 1; /* Distribute evenly */
+}
+
+.stat-number {
+    font-size: 18px; /* Readable */
+    font-weight: 800;
+    color: #fff;
+}
+
+.stat-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #a8a8a8;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 12px;
+    width: 100%;
+    justify-content: center;
+}
+
+.action-btn {
+    flex: 1;
+    border: none;
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    padding: 12px; /* Nice touch target */
+    border-radius: 12px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px; /* For icon spacing */
+}
+
+.action-btn.primary {
+    background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+    box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
+}
+
+.action-btn.secondary {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.action-btn.upload-btn:hover {
+    transform: translateY(-2px) scale(1.05);
+    filter: brightness(1.2);
+}
+
+/* Grid - Mobile Default (3 columns but tight) */
+.insta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 cols is standard, 2 if items are complex */
+    gap: 2px; /* Tiny gap like IG */
+    padding-bottom: 64px;
+    margin-top: 20px;
+    background: transparent; /* Seamless on mobile */
+}
+
+.grid-item {
+    aspect-ratio: 1/1; /* Square for grid */
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 4px; /* Slight round like IG */
+}
+
+.grid-video-wrapper {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+.grid-video-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.grid-item:hover .grid-video-wrapper video {
+    transform: scale(1.1);
+}
+
+.grid-item-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 2;
+}
+
+/* Mobile: always show overlay slightly, or on tap */
+.grid-item:hover .grid-item-overlay {
+    opacity: 1;
+}
+
+.grid-item-info {
+    margin-bottom: 8px;
+}
+
+.grid-item-price {
+    display: block;
+    font-size: 14px;
+    font-weight: 800;
+    color: #ff9966;
+    margin-bottom: 2px;
+}
+
+.grid-item-name {
+    margin: 0;
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.grid-order-btn {
+    width: 100%;
+    padding: 8px;
+    border: none;
+    border-radius: 6px;
+    background: linear-gradient(45deg, #ff00cc, #333399);
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-transform: uppercase;
+}
+
+.grid-order-btn:hover {
+    filter: brightness(1.2);
+    transform: translateY(-2px);
+}
+
+/* Video Modal */
+.video-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+}
+
+.video-modal-content {
+    width: 100%;
+    height: 100%;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.full-screen-video {
+    width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 20px; /* Safe area */
+    right: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    font-size: 24px;
+    width: 44px; /* Touch friendly */
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2010;
+}
+
+/* Animations Mobile Optimized */
+@keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+/* DESKTOP ENHANCEMENTS (Min-Width 768px) */
+@media (min-width: 768px) {
+    .insta-nav {
+        padding: 16px 24px;
+    }
+    
+    .nav-username { font-size: 18px; }
+
+    .custom-profile-header {
+        flex-direction: row; /* Side by side */
+        text-align: left;
+        align-items: flex-start;
+        padding: 32px;
+        gap: 32px;
+        margin: 40px 24px 32px;
+        border-radius: 24px;
+    }
+
+    .header-left {
+        width: 30%;
+        align-items: center;
+        flex-shrink: 0;
+    }
+
+    .profile-image-container::before { inset: -4px; }
+    .profile-avatar { width: 120px; height: 120px; border-width: 4px; }
+
+    .profile-bio-section {
+        align-items: flex-start; /* Left align on desktop */
+        margin-top: 10px;
+    }
+
+    .bio-item {
+        background: rgba(255, 255, 255, 0.05); /* Restore card look */
+        border-radius: 8px; 
+    }
+
+    .header-right {
+        align-items: flex-start; /* Left align */
+    }
+
+    .business-name {
+        font-size: 32px;
+        margin: 0 0 24px; 
+    }
+
+    .stats-container {
+        justify-content: flex-start; /* Left align */
+        gap: 20px;
+    }
+
+    .stat-box {
+        min-width: 100px;
+        padding: 12px 24px; 
+        flex: initial;
+    }
+
+    .stat-number { font-size: 24px; }
+    .stat-label { font-size: 12px; }
+
+    .profile-actions {
+        width: auto;
+        justify-content: flex-start;
+    }
+
+    .action-btn {
+        max-width: 200px;
+        flex: initial;
+        width: auto;
+        font-size: 15px;
+        padding: 14px 24px;
+    }
+
+    .insta-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 16px;
+        padding: 32px 24px 64px;
+        margin-top: 40px;
+        border-radius: 16px;
+        background: rgba(255, 255, 255, 0.05);
+    }
+
+    .grid-item {
+        aspect-ratio: 16/9; /* Cinematic ratio on desktop */
+        border-radius: 16px;
+    }
+
+    .grid-item-overlay {
+        padding: 20px;
+    }
+
+    .grid-item-price {
+        font-size: 18px;
+    }
+
+    .grid-item-name {
+        font-size: 16px;
+    }
+
+    .grid-order-btn {
+        padding: 12px;
+        font-size: 14px;
+    }
+    
+    .video-modal-content {
+        width: 90%;
+        max-width: 1000px;
+        aspect-ratio: 16/9;
+        height: auto;
+        border-radius: 20px;
+    }
+}
