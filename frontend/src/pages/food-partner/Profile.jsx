@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../../api/axios';
 import '../../styles/Store.css';
 
 const Profile = () => {
@@ -18,15 +18,13 @@ const Profile = () => {
         let isMounted = true;
         const fetchStoreData = async () => {
             try {
-                const response = await axios.get(`http://localhost:3000/api/food/partner/${id}`);
+                const response = await api.get(`/api/food/partner/${id}`);
                 if (!isMounted) return;
                 setStoreData(response.data);
                 
                 // Check if the current logged-in partner is the owner
                 try {
-                    const authRes = await axios.get('http://localhost:3000/api/auth/verify-partner', { 
-                        withCredentials: true 
-                    });
+                    const authRes = await api.get('/api/auth/verify-partner');
                     if (isMounted && authRes.data.partner.id === id) {
                         setIsOwner(true);
                     }

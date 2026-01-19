@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import axios from 'axios'
+import api from '../../api/axios'
 import '../../styles/auth.css'
 
 function FoodPartnerRegister() {
@@ -20,9 +20,7 @@ function FoodPartnerRegister() {
     }
 
     try {
-      const response = await axios.post('http://localhost:3000/api/auth/food-partner/register', formData, {
-        withCredentials: true
-      })
+      const response = await api.post('/api/auth/food-partner/register', formData)
 
       if (response.status === 201) {
         console.log('Partner registration successful:', response.data)

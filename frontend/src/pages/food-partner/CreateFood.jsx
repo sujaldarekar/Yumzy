@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../../api/axios';
 import '../../styles/auth.css';
 
 const CreateFood = () => {
@@ -84,8 +84,7 @@ const CreateFood = () => {
         formData.append('video', videoFile);
 
         try {
-            const response = await axios.post('http://localhost:3000/api/food', formData, {
-                withCredentials: true,
+            const response = await api.post('/api/food', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }

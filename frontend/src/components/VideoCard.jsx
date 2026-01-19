@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api/axios';
 import CommentsModal from './CommentsModal';
 import '../styles/Reels.css';
 
@@ -19,14 +19,12 @@ const VideoCard = ({ videoUrl, userName, userAvatar, description, partnerId, foo
   useEffect(() => {
     const fetchLikeStatus = async () => {
       try {
-        const response = await axios.get(`http://localhost:3000/api/food/${id}/like-status`, {
-          withCredentials: true
-        });
+        const response = await api.get(`/api/food/${id}/like-status`);
         setLiked(response.data.liked);
         setLikeCount(response.data.count);
         
         // Fetch comment count
-        const commentsRes = await axios.get(`http://localhost:3000/api/comments/${id}`);
+        const commentsRes = await api.get(`/api/comments/${id}`);
         setCommentCount(commentsRes.data.comments.length);
       } catch {
         // User might not be logged in, that's okay
@@ -87,9 +85,7 @@ const VideoCard = ({ videoUrl, userName, userAvatar, description, partnerId, foo
       setLiked(!liked);
       setLikeCount(prev => liked ? prev - 1 : prev + 1);
 
-      const response = await axios.post(`http://localhost:3000/api/food/${id}/like`, {}, {
-        withCredentials: true
-      });
+      const response = await api.post(`/api/food/${id}/like`, {});
 
       // Update with server response
       setLiked(response.data.liked);

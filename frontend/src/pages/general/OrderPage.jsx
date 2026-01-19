@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../../api/axios';
 import '../../styles/Order.css';
 
 function OrderPage() {
@@ -29,9 +29,7 @@ function OrderPage() {
 
   const fetchFoodItem = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/food/${foodId}`, {
-        withCredentials: true
-      });
+      const response = await api.get(`/api/food/${foodId}`);
       setFoodItem(response.data.foodItem);
       setLoading(false);
     } catch (error) {
@@ -43,9 +41,7 @@ function OrderPage() {
 
   const fetchUserLoyaltyPoints = useCallback(async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/auth/verify', {
-        withCredentials: true
-      });
+      const response = await api.get('/api/auth/verify');
       setLoyaltyPoints(response.data.user.loyaltyPoints || 0);
     } catch (error) {
       console.error('Error fetching loyalty points:', error);
@@ -89,11 +85,9 @@ function OrderPage() {
 
     try {
       const baseAmount = foodItem.price * quantity;
-      const response = await axios.post('http://localhost:3000/api/orders/validate-coupon', {
+      const response = await api.post('/api/orders/validate-coupon', {
         couponCode,
         amount: baseAmount
-      }, {
-        withCredentials: true
       });
 
       setCouponApplied(true);
@@ -152,9 +146,7 @@ function OrderPage() {
         loyaltyPointsUsed: useLoyaltyPoints ? loyaltyPointsToUse : 0
       };
 
-      const response = await axios.post('http://localhost:3000/api/orders', orderData, {
-        withCredentials: true
-      });
+      const response = await api.post('/api/orders', orderData);
 
       setOrderMessage('Order placed successfully! 🎉');
       setTimeout(() => {

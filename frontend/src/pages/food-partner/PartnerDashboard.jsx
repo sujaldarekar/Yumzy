@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../../api/axios';
 import '../../styles/PartnerDashboard.css';
 
 const PartnerDashboard = () => {
@@ -13,8 +13,8 @@ const PartnerDashboard = () => {
     const fetchData = useCallback(async () => {
         try {
             const [ordersRes, foodRes] = await Promise.all([
-                axios.get('http://localhost:3000/api/orders/partner/all', { withCredentials: true }),
-                axios.get('http://localhost:3000/api/food/my-food', { withCredentials: true })
+                api.get('/api/orders/partner/all'),
+                api.get('/api/food/my-food')
             ]);
             setOrders(ordersRes.data.orders);
             setMyFood(foodRes.data.foodItems);
@@ -48,9 +48,8 @@ const PartnerDashboard = () => {
 
     const handleStatusUpdate = async (orderId, newStatus) => {
         try {
-            await axios.patch(`http://localhost:3000/api/orders/${orderId}/status`, 
-                { status: newStatus },
-                { withCredentials: true }
+            await api.patch(`/api/orders/${orderId}/status`, 
+                { status: newStatus }
             );
             // Update local state
             setOrders(prev => prev.map(order => 

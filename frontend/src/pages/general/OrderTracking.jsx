@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
-import axios from 'axios';
+import api from '../../api/axios';
 import 'leaflet/dist/leaflet.css';
 import '../../styles/OrderTracking.css';
 
@@ -25,9 +25,7 @@ function OrderTracking() {
 
   const fetchOrder = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/orders/${orderId}`, {
-        withCredentials: true
-      });
+      const response = await api.get(`/api/orders/${orderId}`);
       setOrder(response.data.order);
       setLoading(false);
     } catch (err) {
@@ -39,9 +37,7 @@ function OrderTracking() {
 
   const handleConfirmReceipt = async () => {
     try {
-      await axios.patch(`http://localhost:3000/api/orders/${orderId}/confirm-receipt`, {}, {
-        withCredentials: true
-      });
+      await api.patch(`/api/orders/${orderId}/confirm-receipt`, {});
       // Redirect to home/reels after confirmation
       navigate('/');
     } catch (err) {

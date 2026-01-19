@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
-import axios from 'axios'
+import api from '../../api/axios'
 import '../../styles/auth.css'
 
 function UserLogin() {
@@ -15,9 +15,7 @@ function UserLogin() {
     const password = e.target.password.value
 
     try {
-      const response = await axios.post('http://localhost:3000/api/auth/user/login', { email, password }, {
-        withCredentials: true
-      })
+      const response = await api.post('/api/auth/user/login', { email, password })
 
       if (response.status === 200) {
         console.log('Login successful:', response.data)

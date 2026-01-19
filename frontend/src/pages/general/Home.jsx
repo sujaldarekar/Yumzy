@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import VideoFeed from '../../components/VideoFeed'
-import axios from 'axios'
+import api from '../../api/axios'
 
 function Home() {
   const navigate = useNavigate();
@@ -10,9 +10,7 @@ function Home() {
     // Check if user is authenticated
     const checkAuth = async () => {
       try {
-        await axios.get('http://localhost:3000/api/auth/verify', {
-          withCredentials: true
-        });
+        await api.get('/api/auth/verify');
         // User is authenticated, continue
       } catch {
         // Not authenticated, redirect to login

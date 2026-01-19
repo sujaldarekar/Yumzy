@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import VideoCard from './VideoCard';
-import axios from 'axios';
+import api from '../api/axios';
 import '../styles/Reels.css';
 
 const VideoFeed = () => {
@@ -11,7 +11,7 @@ const VideoFeed = () => {
     useEffect(() => {
         const fetchVideos = async () => {
             try {
-                const response = await axios.get('http://localhost:3000/api/food');
+                const response = await api.get('/api/food');
                 // Use response.data.foodItems as requested
                 let formattedVideos = response.data.foodItems.map(item => ({
                     id: item._id,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import axios from 'axios';
+import api from '../api/axios';
 import '../styles/Reels.css';
 
 const CommentsModal = ({ foodId, onClose }) => {
@@ -9,7 +9,7 @@ const CommentsModal = ({ foodId, onClose }) => {
 
   const fetchComments = useCallback(async () => {
     try {
-      const response = await axios.get(`http://localhost:3000/api/comments/${foodId}`);
+      const response = await api.get(`/api/comments/${foodId}`);
       setComments(response.data.comments);
     } catch (error) {
       console.error('Error fetching comments:', error);
@@ -26,10 +26,8 @@ const CommentsModal = ({ foodId, onClose }) => {
 
     setLoading(true);
     try {
-      const response = await axios.post(`http://localhost:3000/api/comments/${foodId}`, {
+      const response = await api.post(`/api/comments/${foodId}`, {
         text: newComment
-      }, {
-        withCredentials: true
       });
 
       setComments([response.data.comment, ...comments]);
