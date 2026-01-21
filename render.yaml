@@ -10,6 +10,16 @@ services:
         value: 10000
       - key: NODE_ENV
         value: production
+      - key: JWT_SECRET
+        value: my_super_secret_key_123
+      - key: MONGO_URI
+        value: mongodb+srv://sujaldarekar06_db_user:kO5buK1CdSSRgLN1@cluster0.fvlzev8.mongodb.net/food-view?retryWrites=true&w=majority
+      - key: IMAGEKIT_PUBLIC_KEY
+        value: public_YnUB8H/tpJr5eK8qzVpNeUiUk7k=
+      - key: IMAGEKIT_PRIVATE_KEY
+        value: private_EKen82MQIOvq+slj4sglarVMXEU=
+      - key: IMAGEKIT_URL_ENDPOINT
+        value: https://ik.imagekit.io/sujald
     fromComponents:
       - backend
   - type: static
