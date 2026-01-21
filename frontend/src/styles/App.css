@@ -9,3 +9,48 @@ body{
   height: 100%;
   width: 100%;
 }
+
+/* Home Page Header with Logout */
+.home-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.brand-overlay {
+  display: flex;
+  align-items: center;
+}
+
+.brand-overlay img {
+  height: 50px;
+  width: auto;
+}
+
+.logout-btn {
+  padding: 0.6rem 1.5rem;
+  background: linear-gradient(135deg, #ff006e 0%, #8338ec 100%);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 0, 110, 0.3);
+}
+
+.logout-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 0, 110, 0.4);
+  filter: brightness(1.1);
+}
+
+.logout-btn:active {
+  transform: translateY(0);
+}

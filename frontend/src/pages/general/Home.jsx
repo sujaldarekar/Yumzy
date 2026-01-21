@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import VideoFeed from '../../components/VideoFeed'
 import api from '../../api/axios'
+import '../../styles/App.css'
 
 function Home() {
   const navigate = useNavigate();
@@ -21,10 +22,25 @@ function Home() {
     checkAuth();
   }, [navigate]);
 
+  const handleLogout = async () => {
+    try {
+      await api.post('/api/auth/logout');
+      navigate('/user/login');
+    } catch (error) {
+      console.error('Logout failed:', error);
+      navigate('/user/login');
+    }
+  };
+
   return (
     <div className="home-page">
-      <div className="brand-overlay">
-        <img src="/logo/yumzy.png" alt="Yumzy" />
+      <div className="home-header">
+        <div className="brand-overlay">
+          <img src="/logo/yumzy.png" alt="Yumzy" />
+        </div>
+        <button className="logout-btn" onClick={handleLogout}>
+          Logout
+        </button>
       </div>
       <VideoFeed />
     </div>
