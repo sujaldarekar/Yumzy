@@ -3,8 +3,9 @@ services:
     name: yumzy-backend
     env: node
     plan: free
-    buildCommand: cd backend && npm install
-    startCommand: cd backend && node server.js
+    root: backend
+    buildCommand: npm install
+    startCommand: node server.js
     envVars:
       - key: PORT
         value: 10000
@@ -20,8 +21,6 @@ services:
         value: private_EKen82MQIOvq+slj4sglarVMXEU=
       - key: IMAGEKIT_URL_ENDPOINT
         value: https://ik.imagekit.io/sujald
-    fromComponents:
-      - backend
   - type: static
     name: yumzy-frontend
     env: static
