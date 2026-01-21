@@ -30,9 +30,11 @@ services:
       - type: rewrite
         source: /*
         destination: /index.html
+    headers:
+      - path: /index.html
+        headers:
+          - key: Cache-Control
+            value: "no-cache"
     envVars:
       - key: VITE_API_URL
-        fromService:
-          type: web
-          name: yumzy-backend
-          envVar: url
+        value: https://yumzy-backend-i24j.onrender.com
