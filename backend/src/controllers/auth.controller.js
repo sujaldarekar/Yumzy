@@ -27,7 +27,12 @@ async function registerUser(req, res) {
     });
 
     const token = jwt.sign({ id: user._id }, JWT_SECRET);
-    res.cookie("userToken", token, { httpOnly: true });
+    res.cookie("userToken", token, { 
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+    });
 
     res.status(201).json({
       message: "User registered successfully",
@@ -49,7 +54,12 @@ async function loginUser(req, res) {
     if (!valid) return res.status(400).json({ message: "Invalid credentials" });
 
     const token = jwt.sign({ id: user._id }, JWT_SECRET);
-    res.cookie("userToken", token, { httpOnly: true });
+    res.cookie("userToken", token, { 
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+    });
 
     res.json({ message: "User logged in successfully" });
   } catch (err) {
@@ -91,7 +101,12 @@ async function registerFoodPartner(req, res) {
     });
 
     const token = jwt.sign({ id: partner._id }, JWT_SECRET);
-    res.cookie("partnerToken", token, { httpOnly: true });
+    res.cookie("partnerToken", token, { 
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+    });
 
     res.status(201).json({
       message: "Food partner registered successfully",
@@ -114,7 +129,12 @@ async function loginFoodPartner(req, res) {
     if (!valid) return res.status(400).json({ message: "Invalid credentials" });
 
     const token = jwt.sign({ id: partner._id }, JWT_SECRET);
-    res.cookie("partnerToken", token, { httpOnly: true });
+    res.cookie("partnerToken", token, { 
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'lax',
+      maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
+    });
 
     res.json({ message: "Food partner logged in successfully" });
   } catch (err) {
