@@ -65,7 +65,14 @@ function logoutUser(req, res) {
 // ---------------- FOOD PARTNER ----------------
 
 async function registerFoodPartner(req, res) {
-  const { name, email, password, contactName, phone } = req.body;
+  // Normalize fields to avoid mismatches from casing/whitespace
+  const { name, email, password, contactName, phone } = {
+    ...req.body,
+    email: req.body.email?.trim().toLowerCase(),
+    name: req.body.name?.trim(),
+    contactName: req.body.contactName?.trim(),
+    phone: req.body.phone?.trim(),
+  };
 
   try {
     const existing = await foodPartnerModel.findOne({ email });
@@ -96,7 +103,8 @@ async function registerFoodPartner(req, res) {
 }
 
 async function loginFoodPartner(req, res) {
-  const { email, password } = req.body;
+  const email = req.body.email?.trim().toLowerCase();
+  const { password } = req.body;
 
   try {
     const partner = await foodPartnerModel.findOne({ email });

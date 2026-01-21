@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&display=swap');
+
 /**** Animations ****/
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(20px); }
@@ -359,19 +361,14 @@
   transform: scale(0.95);
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&display=swap');
-
 .food-name {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Playfair Display', 'Segoe UI Emoji', 'Apple Color Emoji', 'Noto Color Emoji', serif;
   font-style: italic;
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 0.5rem;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
-  background: linear-gradient(to right, #ffffff, #f0f0f0);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: #ffffff;
   letter-spacing: 1px;
 }
 
