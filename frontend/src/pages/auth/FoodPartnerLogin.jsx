@@ -19,8 +19,11 @@ function FoodPartnerLogin() {
 
       if (response.status === 200) {
         console.log('Partner login successful:', response.data)
-        // Explicitly logging response.data as requested
-        console.log(response.data)
+        // Save token to localStorage for header-based auth
+        if (response.data.token) {
+          localStorage.setItem('partnerToken', response.data.token)
+          localStorage.removeItem('userToken') // Clear user token if switching accounts
+        }
         navigate('/foodpartner/dashboard')
       }
     } catch (err) {

@@ -19,8 +19,11 @@ function UserLogin() {
 
       if (response.status === 200) {
         console.log('Login successful:', response.data)
-        // Explicitly logging response.data as requested
-        console.log(response.data)
+        // Save token to localStorage for header-based auth
+        if (response.data.token) {
+          localStorage.setItem('userToken', response.data.token)
+          localStorage.removeItem('partnerToken') // Clear partner token if switching accounts
+        }
         navigate('/user/home')
       }
     } catch (err) {

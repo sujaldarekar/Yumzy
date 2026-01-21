@@ -27,9 +27,12 @@ function UserRegister() {
 
       if (response.status === 201) {
         console.log('Registration successful:', response.data)
-        // Explicitly logging response.data as requested
-        console.log(response.data)
-        navigate('/user/login')
+        // Save token to localStorage for header-based auth
+        if (response.data.token) {
+          localStorage.setItem('userToken', response.data.token)
+          localStorage.removeItem('partnerToken') // Clear partner token if switching accounts
+        }
+        navigate('/user/home')
       }
     } catch (err) {
       console.error('Registration error:', err)

@@ -10,6 +10,26 @@ const PartnerDashboard = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    // Check authentication on mount
+    useEffect(() => {
+        const partnerToken = localStorage.getItem('partnerToken');
+        if (!partnerToken) {
+            navigate('/foodpartner/login');
+            return;
+        }
+
+        const verifyAuth = async () => {
+            try {
+                await api.get('/api/auth/verify-partner');
+            } catch {
+                localStorage.removeItem('partnerToken');
+                navigate('/foodpartner/login');
+            }
+        };
+
+        verifyAuth();
+    }, [navigate]);
+
     const fetchData = useCallback(async () => {
         try {
             const [ordersRes, foodRes] = await Promise.all([

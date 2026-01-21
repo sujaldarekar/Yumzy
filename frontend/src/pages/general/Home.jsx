@@ -8,13 +8,23 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Check if user is authenticated
+    // Check if user is authenticated by verifying token exists and is valid
     const checkAuth = async () => {
+      const userToken = localStorage.getItem('userToken');
+      
+      // If no token stored, redirect to login
+      if (!userToken) {
+        navigate('/user/login');
+        return;
+      }
+      
       try {
+        // Verify token with backend
         await api.get('/api/auth/verify');
         // User is authenticated, continue
       } catch {
-        // Not authenticated, redirect to login
+        // Token is invalid, clear and redirect to login
+        localStorage.removeItem('userToken');
         navigate('/user/login');
       }
     };
@@ -25,9 +35,12 @@ function Home() {
   const handleLogout = async () => {
     try {
       await api.post('/api/auth/logout');
-      navigate('/user/login');
     } catch (error) {
       console.error('Logout failed:', error);
+    } finally {
+      // Always clear token and redirect, even if logout API fails
+      localStorage.removeItem('userToken');
+      localStorage.removeItem('partnerToken');
       navigate('/user/login');
     }
   };
