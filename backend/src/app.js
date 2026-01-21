@@ -10,6 +10,7 @@ const orderRoutes = require("./routes/order.routes");
 
 const app = express();
 
+// CORS configuration - Allow frontend origins
 app.use(cors({
   origin: ["http://localhost:5173", "http://localhost:5174", "https://yumzy-frontend-f399.onrender.com", "https://yumzy-frontend-m2jh.onrender.com"],
   credentials: true
