@@ -5,12 +5,12 @@ services:
     plan: free
     root: backend
     buildCommand: npm install
-    startCommand: node server.js
+    startCommand: npm start
     envVars:
-      - key: PORT
-        value: 10000
       - key: NODE_ENV
         value: production
+      - key: PORT
+        value: "3000"
       - key: JWT_SECRET
         value: my_super_secret_key_123
       - key: MONGO_URI
