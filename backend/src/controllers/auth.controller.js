@@ -36,6 +36,7 @@ async function registerUser(req, res) {
 
     res.status(201).json({
       message: "User registered successfully",
+      token, // Return token for header-based auth
       user: { id: user._id, fullName: user.fullName, email: user.email }
     });
   } catch (err) {
@@ -61,7 +62,10 @@ async function loginUser(req, res) {
       maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
     });
 
-    res.json({ message: "User logged in successfully" });
+    res.json({ 
+      message: "User logged in successfully",
+      token // Also return token in response for header-based auth
+    });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -110,6 +114,7 @@ async function registerFoodPartner(req, res) {
 
     res.status(201).json({
       message: "Food partner registered successfully",
+      token, // Return token for header-based auth
       partner: { id: partner._id, name: partner.name, email: partner.email }
     });
   } catch (err) {
@@ -136,7 +141,10 @@ async function loginFoodPartner(req, res) {
       maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
     });
 
-    res.json({ message: "Food partner logged in successfully" });
+    res.json({ 
+      message: "Food partner logged in successfully",
+      token // Also return token in response for header-based auth
+    });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

@@ -3,7 +3,15 @@ const userModel = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 
 async function authFoodPartnerMiddleware(req, res, next) {
-  const token = req.cookies.partnerToken;
+  // First try cookie, then try Authorization header
+  let token = req.cookies.partnerToken;
+  
+  if (!token && req.headers.authorization) {
+    const authHeader = req.headers.authorization;
+    if (authHeader.startsWith('Bearer ')) {
+      token = authHeader.substring(7); // Remove "Bearer " prefix
+    }
+  }
 
   if (!token) {
     return res.status(401).json({ message: "Unauthorized access" });
@@ -25,7 +33,15 @@ async function authFoodPartnerMiddleware(req, res, next) {
 }
 
 async function authUserMiddleware(req , res, next) {
-    const token = req.cookies.userToken;
+    // First try cookie, then try Authorization header
+    let token = req.cookies.userToken;
+    
+    if (!token && req.headers.authorization) {
+      const authHeader = req.headers.authorization;
+      if (authHeader.startsWith('Bearer ')) {
+        token = authHeader.substring(7); // Remove "Bearer " prefix
+      }
+    }
 
     if (!token) {
         return res.status(401).json({ message: "Unauthorized access" });
