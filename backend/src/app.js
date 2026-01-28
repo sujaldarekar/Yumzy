@@ -23,8 +23,8 @@ app.use(cors({
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
 // Ensure preflight requests are handled (Express 5 uses path-to-regexp v6)
-// Use a compatible wildcard instead of "*" which throws in v6
-app.options('/api/(.*)', cors());
+// Handle OPTIONS for all /api routes
+app.options('/api/*', cors());
 app.use(cookieParser());
 app.use(express.json());
 
