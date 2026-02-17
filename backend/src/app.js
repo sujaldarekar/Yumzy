@@ -26,8 +26,7 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
-// Ensure preflight requests are handled for all routes
-app.options("/*", cors());
+// CORS middleware already handles preflight requests.
 app.use(cookieParser());
 app.use(express.json());
 
