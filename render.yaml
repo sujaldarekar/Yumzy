@@ -35,9 +35,8 @@ services:
         destination: /index.html
     headers:
       - path: /index.html
-        headers:
-          - key: Cache-Control
-            value: "no-cache"
+        name: Cache-Control
+        value: "no-cache"
     envVars:
       - key: VITE_API_URL
         value: https://your-backend.onrender.com
