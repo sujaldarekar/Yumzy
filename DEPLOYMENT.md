@@ -46,6 +46,8 @@ Railway provides easy deployment with automatic MongoDB and environment variable
 
 ### Option 2: Render
 
+This repo includes a Render Blueprint at `render.yaml`. Update the placeholder values (or set env vars in the Render dashboard) before deploying.
+
 1. **Create New Web Service**:
 
    - Go to [render.com](https://render.com/)

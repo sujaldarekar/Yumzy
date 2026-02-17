@@ -10,21 +10,24 @@ const orderRoutes = require("./routes/order.routes");
 
 const app = express();
 
+const defaultCorsOrigins = [
+  "http://localhost:5173",
+  "http://localhost:5174",
+];
+
+const corsOrigins = process.env.CORS_ORIGINS
+  ? process.env.CORS_ORIGINS.split(",").map((origin) => origin.trim()).filter(Boolean)
+  : defaultCorsOrigins;
+
 // CORS configuration - Allow frontend origins
 app.use(cors({
-  origin: [
-    "http://localhost:5173",
-    "http://localhost:5174",
-    "https://yumzy-frontend-f399.onrender.com",
-    "https://yumzy-frontend-m2jh.onrender.com"
-  ],
+  origin: corsOrigins,
   credentials: true,
   methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 }));
-// Ensure preflight requests are handled (Express 5 uses path-to-regexp v6)
-// Handle OPTIONS for all /api routes
-app.options('/api/*', cors());
+// Ensure preflight requests are handled for all routes
+app.options('*', cors());
 app.use(cookieParser());
 app.use(express.json());
 
