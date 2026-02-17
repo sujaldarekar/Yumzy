@@ -1,9 +1,9 @@
 services:
   - type: web
     name: yumzy-backend
-    env: node
+    runtime: node
     plan: free
-    root: backend
+    rootDir: backend
     buildCommand: npm install
     startCommand: npm start
     envVars:
@@ -23,11 +23,12 @@ services:
         value: "CHANGE_ME"
       - key: CORS_ORIGINS
         value: "https://your-frontend.onrender.com"
-
-staticSites:
-  - name: yumzy-frontend
-    buildCommand: cd frontend && npm install && npm run build
-    publishPath: frontend/dist
+  - type: web
+    name: yumzy-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
     routes:
       - type: rewrite
         source: /*
