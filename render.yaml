@@ -23,11 +23,11 @@ services:
         value: "CHANGE_ME"
       - key: CORS_ORIGINS
         value: "https://your-frontend.onrender.com"
-  - type: static
-    name: yumzy-frontend
-    env: static
+
+staticSites:
+  - name: yumzy-frontend
     buildCommand: cd frontend && npm install && npm run build
-    publishDir: frontend/dist
+    publishPath: frontend/dist
     routes:
       - type: rewrite
         source: /*
