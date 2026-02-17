@@ -12,15 +12,17 @@ services:
       - key: PORT
         value: "3000"
       - key: JWT_SECRET
-        value: my_super_secret_key_123
+        value: "CHANGE_ME"
       - key: MONGO_URI
-        value: mongodb+srv://sujaldarekar06_db_user:kO5buK1CdSSRgLN1@cluster0.fvlzev8.mongodb.net/food-view?retryWrites=true&w=majority
+        value: "CHANGE_ME"
       - key: IMAGEKIT_PUBLIC_KEY
-        value: public_YnUB8H/tpJr5eK8qzVpNeUiUk7k=
+        value: "CHANGE_ME"
       - key: IMAGEKIT_PRIVATE_KEY
-        value: private_EKen82MQIOvq+slj4sglarVMXEU=
+        value: "CHANGE_ME"
       - key: IMAGEKIT_URL_ENDPOINT
-        value: https://ik.imagekit.io/sujald
+        value: "CHANGE_ME"
+      - key: CORS_ORIGINS
+        value: "https://your-frontend.onrender.com"
   - type: static
     name: yumzy-frontend
     env: static
@@ -37,4 +39,4 @@ services:
             value: "no-cache"
     envVars:
       - key: VITE_API_URL
-        value: https://yumzy-backend-i24j.onrender.com
+        value: https://your-backend.onrender.com
